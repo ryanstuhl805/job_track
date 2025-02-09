@@ -4,14 +4,12 @@ class Company < ApplicationRecord
 
   accepts_nested_attributes_for :notes, allow_destroy: true
 
-  after_destroy :destroy_orphaned_notes
+  before_destroy :destroy_orphaned_notes
 
   validates :name, presence: true, uniqueness: true
 
   def destroy_orphaned_notes
-    notes.each do |note|
-      note.destroy if note.companies.empty?
-      company_note.destroy if company_note.company.nil?
-    end
+    company_notes.destroy_all
+    notes.destroy_all
   end
 end
