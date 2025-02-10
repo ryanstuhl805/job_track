@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    @companies = Company.all.includes(:notes)
+    @companies = Company.all.includes(:notes).order(:name, :id)
 
     render json: @companies, include: :notes
   end
