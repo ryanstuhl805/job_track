@@ -76,8 +76,8 @@ class CompaniesController < ApplicationController
         notes_attributes: [
           :id,
           :status,
-          :website_links,
-          :important_date,
+          :links,
+          :callout,
           :_destroy
         ]
       )
